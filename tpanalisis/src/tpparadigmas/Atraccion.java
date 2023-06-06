@@ -1,17 +1,28 @@
 package tpparadigmas;
 
-public class Atraccion {
+public class Atraccion extends Producto {
 	
-	private int costo;
-	private double tiempo;
-	private int cupo;
-	private int tipo;
+	protected int cupo;
 	
-	Atraccion(int costo,double tiempo,int cupo,int tipo)
+	public Atraccion(String nom, int cost, double time, TipoAtraccion tipo, int cup)
 	{
-		this.costo = costo;
-		this.tiempo = tiempo;
-		this.cupo = cupo;
-		this.tipo = tipo;		
+		super(nom, tipo);	
+		this.nombre = nom;
+		this.costo = cost;
+		this.tiempo = time;
+		this.cupo = cup;
 	}
+	
+	public void decrementarCupo() {
+		this.cupo--;
+	}
+	
+	public boolean sinCupo() {
+		return cupo == 0;
+	}
+	
+	public boolean equals(Atraccion otro) {
+		return this.nombre == otro.getNombre();
+	}
+	
 }

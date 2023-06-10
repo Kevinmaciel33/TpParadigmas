@@ -20,7 +20,6 @@ public class Main {
 		Collections.sort(listaOriginal);
 		System.out.println(listaOriginal);
 		
-		
 		//Listas para mostrar al usuario en base a sus preferencias
 		LinkedList<Producto> ofrecerAUsuariosAventura = new LinkedList<Producto>();
 		LinkedList<Producto> ofrecerAUsuariosPaisaje = new LinkedList<Producto>();

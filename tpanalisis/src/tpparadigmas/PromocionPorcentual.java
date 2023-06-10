@@ -2,16 +2,16 @@ package tpparadigmas;
 
 public class PromocionPorcentual extends Promocion {
 
-	private int porcentaje; 
+	private double porcentaje; 
 	
-	public PromocionPorcentual(String nom, TipoAtraccion tipo, int porc) {
+	public PromocionPorcentual(String nom, TipoAtraccion tipo, double porc) {
 		super(nom, tipo);
 		this.porcentaje = porc;
 	}
 
 	@Override
 	public void calcularCosto() {
-		this.costo = this.costoOriginal - (this.costoOriginal * this.porcentaje);
+		this.costo = this.costoOriginal - (int)(this.costoOriginal * this.porcentaje);
 	}
 	
 }

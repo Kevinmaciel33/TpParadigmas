@@ -33,15 +33,22 @@ public abstract class Producto implements Comparable<Producto> {
 	
 	@Override
 	public int compareTo(Producto otro) {
-		if(otro.getCosto() < this.costo) {
-			return -1;
-		} else if(otro.getCosto() > this.costo) {
-			return 1;
-		} else {
-			if(otro.getTiempo() < this.tiempo) {
+		if(this.getClass().getSuperclass().equals(otro.getClass().getSuperclass())) {
+			if(otro.getCosto() < this.costo) {
 				return -1;
-			} else return 1;
-		}
+			} else if(otro.getCosto() > this.costo) {
+				return 1;
+			} else {
+				if(otro.getTiempo() < this.tiempo) {
+					return -1;
+				} else if(otro.getTiempo() > this.tiempo) {
+					return 1;
+				} else return 0;
+			}
+		} else if(this.getClass().getSuperclass().getSimpleName().equals("Promocion")) {
+			return -1;
+		} else return 1;
+		
 	}
 
 	@Override

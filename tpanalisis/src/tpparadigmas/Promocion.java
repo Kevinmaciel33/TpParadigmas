@@ -8,14 +8,23 @@ public abstract class Promocion extends Producto {
 	protected int costoOriginal;
 	protected boolean noHayCupo = false;
 	
-	public Promocion(String nom, TipoAtraccion tipo) {
+	public Promocion(String nom, TipoAtraccion tipo)
+	{
 		super(nom, tipo);
+		this.atracciones = new LinkedList<Atraccion>();
 	}
 
 	public void addAtraccion(Atraccion att) {
-		atracciones.add(att);
+		this.atracciones.add(att);
 	}
 	
+	@Override
+	public String toString() {
+		return "Promocion [atracciones=" + atracciones + ", costoOriginal=" + costoOriginal + ", noHayCupo=" + noHayCupo
+				+ ", nombre=" + nombre + ", costo=" + costo + ", tiempo=" + tiempo + ", tipoAtraccion=" + tipoAtraccion
+				+ "]";
+	}
+
 	public LinkedList<Atraccion> getAtracciones() {
 		return this.atracciones;
 	}

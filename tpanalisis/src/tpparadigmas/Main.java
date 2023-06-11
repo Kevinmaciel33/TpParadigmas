@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.Scanner;
 
 public class Main {
 
@@ -41,18 +42,104 @@ public class Main {
 		System.out.println(listaOriginal);
 		
 		//Listas para mostrar al usuario en base a sus preferencias
-		LinkedList<Producto> ofrecerAUsuariosAventura = new LinkedList<Producto>();
-		LinkedList<Producto> ofrecerAUsuariosPaisaje = new LinkedList<Producto>();
-		LinkedList<Producto> ofrecerAUsuariosDegustacion = new LinkedList<Producto>();
+		LinkedList<Producto> listaOrdAventura = new LinkedList<Producto>();
+		LinkedList<Producto> listaOrdPaisaje = new LinkedList<Producto>();
+		LinkedList<Producto> listaOrdDegustacion = new LinkedList<Producto>();
 		
-		ofrecerAUsuariosAventura 	= Stream.concat(listaOriginal.stream().filter(elemento -> elemento.tipoAtraccion == TipoAtraccion.Aventura), 
+		listaOrdAventura 	= Stream.concat(listaOriginal.stream().filter(elemento -> elemento.tipoAtraccion == TipoAtraccion.Aventura), 
 													listaOriginal.stream().filter(elemento -> elemento.tipoAtraccion != TipoAtraccion.Aventura)).collect(Collectors.toCollection(LinkedList::new));
 		
-		ofrecerAUsuariosPaisaje 	= Stream.concat(listaOriginal.stream().filter(elemento -> elemento.tipoAtraccion == TipoAtraccion.Paisaje),
+		listaOrdPaisaje 	= Stream.concat(listaOriginal.stream().filter(elemento -> elemento.tipoAtraccion == TipoAtraccion.Paisaje),
 													listaOriginal.stream().filter(elemento -> elemento.tipoAtraccion != TipoAtraccion.Paisaje)).collect(Collectors.toCollection(LinkedList::new));
 		
-		ofrecerAUsuariosDegustacion = Stream.concat(listaOriginal.stream().filter(elemento -> elemento.tipoAtraccion == TipoAtraccion.Degustacion),
+		listaOrdDegustacion = Stream.concat(listaOriginal.stream().filter(elemento -> elemento.tipoAtraccion == TipoAtraccion.Degustacion),
 													listaOriginal.stream().filter(elemento -> elemento.tipoAtraccion != TipoAtraccion.Degustacion)).collect(Collectors.toCollection(LinkedList::new));	
-	}
+	
 
+	for(Usuario usuario:listaUsuarios){
+			TipoAtraccion tipoPref = usuario.getPreferencia();
+			LinkedList<Producto> listaPref;
+
+			switch (tipoPref) {
+			case Aventura:
+				listaPref = listaOrdAventura;
+				break;
+			case Paisaje:
+				listaPref = listaOrdPaisaje;
+				break;
+			case Degustacion:
+				listaPref = listaOrdDegustacion;
+				break;
+			default:
+				listaPref = listaOriginal;
+				break;
+		}
+
+
+		LinkedList<Producto> atraccionesAceptadas = new LinkedList<>();
+		int gastoTotal = 0;
+		double tiempoTotal = 0;
+
+		for (Producto producto : listaSeleccionada) {
+			if (producto.sinCupo())
+				continue; 
+			}
+		
+		if (producto instanceof Promocion) {
+			Promocion promocion = (Promocion) producto;
+			if (!promocion.tieneCupo() || (promocion.getAtracciones().stream().anyMatch(atraccion -> atraccionesAceptadas.contains(atraccion)))) {
+				continue;
+			}
+		} else {
+			Atraccion atraccion = (Atraccion) producto;
+			if (atraccionesAceptadas.contains(atraccion))
+				continue; 
+			}
+		
+		
+		
+		if (usuario.tienePresupuestoSuficiente(producto.getCosto()) && usuario.tieneTiempoDisponibleSuficiente(producto.getTiempo())) {
+
+			Scanner scanner = new Scanner(System.in);
+			String respuesta;
+			do{
+			System.out.println("¿Te gustaría realizar la compra de " + producto.getNombre() + "? (Y/N)");
+			respuesta = scanner.nextLine();
+			
+			if (respuesta.equalsIgnoreCase("Y")) {
+				usuario.restarPresupuesto(atraccion.getCosto());
+				usuario.restarTiempo(atraccion.getTiempo());
+
+				if (producto instanceof Promocion)
+					atraccionesAceptadas.addAll(promocion.atracciones);
+				else atraccionesAceptadas.add(atraccion);
+
+				gastoTotal += producto.getTiempo();
+				tiempoTotal += producto.getCosto();
+
+
+				System.out.println("Compra realizada con éxito!");
+				}
+			
+			System.out.println("Presupuesto restante: " + usuario.getPresupuesto());
+			System.out.println("Tiempo restante: " + usuario.getTiempoDisponible());
+			
+			}while(!respuesta.equalsIgnoreCase("Y") || !respuesta.equalsIgnoreCase("N"));
+
+		}
+
+			if (dineroGastado > 0 || tiempoGastado > 0) {
+			System.out.println("----- Itinerario -----");
+			System.out.println("Atracciones compradas: ");
+			for (Atraccion atraccion : atraccionesAceptadas) {
+				System.out.println(atraccion);
+				}
+			System.out.println("Costo total: " + dineroGastado);
+			System.out.println("Tiempo total: " + tiempoGastado);
+			}
+	}
+	
+	
+	
+	}
 }

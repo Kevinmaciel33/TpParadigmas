@@ -22,5 +22,36 @@ public class Usuario {
 				+ ", preferencia=" + preferencia + "]";
 	}
 	
-	
+	public TipoAtraccion getPreferencia() {
+        return tipoAtraccionPreferida;
+    }
+
+	public boolean tienePresupuestoSuficiente(int costo) {
+	return presupuesto >= costo;
+	}
+
+	public boolean tieneTiempoDisponibleSuficiente(double tiempo) {
+		return tiempoDisponible >= tiempo;
+	}
+
+	public void restarPresupuesto(int costo) {
+		presupuesto -= costo;
+	}
+
+	public void restarTiempoDisponible(double tiempo) {
+		tiempoDisponible -= tiempo;
+	}
+
+	public int getPresupuesto() {
+		return presupuesto;
+	}
+
+	public double getTiempoDisponible() {
+		return tiempoDisponible;
+	}
+
+
+
+
+
 }

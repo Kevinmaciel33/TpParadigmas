@@ -6,7 +6,7 @@ public abstract class Promocion extends Producto {
 
 	protected LinkedList<Atraccion> atracciones;
 	protected int costoOriginal;
-	protected boolean noHayCupo = false;
+	protected boolean sinCupo = false;
 	
 	public Promocion(String nom, TipoAtraccion tipo)
 	{
@@ -20,7 +20,7 @@ public abstract class Promocion extends Producto {
 	
 	@Override
 	public String toString() {
-		return "Promocion [atracciones=" + atracciones + ", costoOriginal=" + costoOriginal + ", noHayCupo=" + noHayCupo
+		return "Promocion [atracciones=" + atracciones + ", costoOriginal=" + costoOriginal + ", sinCupo=" + sinCupo
 				+ ", nombre=" + nombre + ", costo=" + costo + ", tiempo=" + tiempo + ", tipoAtraccion=" + tipoAtraccion
 				+ "]";
 	}
@@ -35,13 +35,13 @@ public abstract class Promocion extends Producto {
 		});
 	}
 	
-	public boolean sinCupo() {
-		if(!this.noHayCupo) {
+	public boolean tieneCupo() {
+		if(!this.sinCupo) {
 			atracciones.forEach((att) -> {
-				if(att.sinCupo()) this.noHayCupo = true;
+				if(att.sinCupo()) this.sinCupo = true;
 			});
 		}
-		return this.noHayCupo;
+		return this.sinCupo;
 	}
 	
 	public void calcularTiempo() {

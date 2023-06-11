@@ -23,13 +23,13 @@ public abstract class Producto implements Comparable<Producto> {
 		return this.tipoAtraccion;
 	}
 	
-	public int getCosto() {
-		return this.costo;
-	}
-	
 	public abstract void decrementarCupo();
 	
 	public abstract boolean sinCupo();
+	
+	public abstract int getCosto();
+	
+	public abstract boolean hayAtraccionAceptada(Atraccion otraAtraccion);
 	
 	@Override
 	public int compareTo(Producto otro) {

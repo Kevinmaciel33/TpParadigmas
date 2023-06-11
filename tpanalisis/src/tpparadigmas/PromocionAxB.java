@@ -10,8 +10,15 @@ public class PromocionAxB extends Promocion {
 	}
 
 	@Override
-	public void calcularCosto() {
-		this.costo = this.costoOriginal - this.attracionGratis.getCosto();
+	public int getCosto() {
+		return this.costo - this.attracionGratis.getCosto();
 	}
-
+	
+	@Override
+	public String toString() {
+		return super.toString()+
+				"\n- Atraccion Gratis:\t"+this.attracionGratis.getNombre()+
+				"\n- Costo Final:\t$"+this.getCosto();
+	}
+	
 }

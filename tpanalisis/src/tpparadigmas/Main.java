@@ -1,5 +1,6 @@
 package tpparadigmas;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
@@ -52,7 +53,23 @@ public class Main {
 													listaOriginal.stream().filter(elemento -> elemento.tipoAtraccion != TipoAtraccion.Paisaje)).collect(Collectors.toCollection(LinkedList::new));
 		
 		ofrecerAUsuariosDegustacion = Stream.concat(listaOriginal.stream().filter(elemento -> elemento.tipoAtraccion == TipoAtraccion.Degustacion),
-													listaOriginal.stream().filter(elemento -> elemento.tipoAtraccion != TipoAtraccion.Degustacion)).collect(Collectors.toCollection(LinkedList::new));	
+													listaOriginal.stream().filter(elemento -> elemento.tipoAtraccion != TipoAtraccion.Degustacion)).collect(Collectors.toCollection(LinkedList::new));
+		
+		
+		SistemaSugerencia sistemaSugerencia = new SistemaSugerencia();
+		ArrayList<Compra> compras = new ArrayList<>();
+		for(Usuario usuario : listaUsuarios) {
+			Compra compra = new Compra(usuario);
+			
+			LinkedList<Producto> sugerencias = sistemaSugerencia.buscarListaSugerenciasSegunTipo(usuario.getAtraccionPreferida(),
+																								ofrecerAUsuariosPaisaje, ofrecerAUsuariosDegustacion, ofrecerAUsuariosAventura);
+			
+			ArrayList<Atraccion> atraccionesAceptadas = sistemaSugerencia.sugerirAlUsuario(usuario, compra, sugerencias);
+
+			sistemaSugerencia.generarItinerario(usuario, compra, atraccionesAceptadas);
+
+			compras.add(compra);
+		}
 	}
 
 }

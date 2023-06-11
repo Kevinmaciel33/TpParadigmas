@@ -23,6 +23,10 @@ public class Atraccion extends Producto {
 		return cupo == 0;
 	}
 	
+	@Override
+	public int getCosto() {
+		return this.costo;
+	}
 	
 	public boolean equals(Atraccion otro) {
 		return this.nombre == otro.getNombre();
@@ -37,11 +41,19 @@ public class Atraccion extends Producto {
 		}
 		return null;		
 	}
-
+	
+	@Override
+	public boolean hayAtraccionAceptada(Atraccion otraAtraccion) {
+		return this.equals(otraAtraccion);
+	}
+	
 	@Override
 	public String toString() {
-		return "Atraccion [cupo=" + cupo + ", nombre=" + nombre + ", costo=" + costo + ", tiempo=" + tiempo
-				+ ", tipoAtraccion=" + tipoAtraccion + "]";
+		return "Atraccion "+this.nombre+
+				"\n- Costo:\t\t$"+this.costo+
+				"\n- Tiempo:\t\t"+this.tiempo+" hs"+
+				"\n- Tipo de Atraccion:\t"+this.tipoAtraccion+
+				"\n- Cupo:\t"+this.cupo;
 	}
 	
 }

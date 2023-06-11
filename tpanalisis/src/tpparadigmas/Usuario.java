@@ -21,6 +21,28 @@ public class Usuario {
 		return "Usuario [nombre=" + nombre + ", presupuesto=" + presupuesto + ", tiempoDisponible=" + tiempoDisponible
 				+ ", preferencia=" + preferencia + "]";
 	}
+
+	public int getPresupuesto() {
+		return this.presupuesto;
+	}
+
+	public double getTiempo() {
+		return this.tiempoDisponible;
+	}
+
+	public String getNombre() {
+		return this.nombre;
+	}
+
+	public TipoAtraccion getAtraccionPreferida() {
+		return this.preferencia;
+	}
 	
-	
+	public void restarTiempo(double tiempo) {
+		this.tiempoDisponible-=tiempo;
+	}
+
+	public void restarPresupuesto(double costo) {
+		this.presupuesto-=costo;
+	}
 }

@@ -10,8 +10,13 @@ public class PromocionPorcentual extends Promocion {
 	}
 
 	@Override
-	public void calcularCosto() {
-		this.costo = this.costoOriginal - (int)(this.costoOriginal * this.porcentaje);
+	public int getCosto() {
+		return (int) (this.costo*(1 - this.porcentaje/100));
 	}
 	
+	@Override
+	public String toString() {
+		return super.toString()+
+				"\n- Costo con descuento:  $"+this.getCosto();
+	}
 }

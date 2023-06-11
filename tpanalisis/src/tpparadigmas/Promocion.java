@@ -5,24 +5,21 @@ import java.util.LinkedList;
 public abstract class Promocion extends Producto {
 
 	protected LinkedList<Atraccion> atracciones;
-	protected int costoOriginal;
 	protected boolean noHayCupo = false;
 	
 	public Promocion(String nom, TipoAtraccion tipo)
 	{
 		super(nom, tipo);
 		this.atracciones = new LinkedList<Atraccion>();
+
+		this.costo=0;
+		this.tiempo=0;
 	}
 
 	public void addAtraccion(Atraccion att) {
 		this.atracciones.add(att);
-	}
-	
-	@Override
-	public String toString() {
-		return "Promocion [atracciones=" + atracciones + ", costoOriginal=" + costoOriginal + ", noHayCupo=" + noHayCupo
-				+ ", nombre=" + nombre + ", costo=" + costo + ", tiempo=" + tiempo + ", tipoAtraccion=" + tipoAtraccion
-				+ "]";
+		this.costo+= att.costo;
+		this.tiempo+=att.tiempo;
 	}
 
 	public LinkedList<Atraccion> getAtracciones() {
@@ -50,16 +47,31 @@ public abstract class Promocion extends Producto {
 		});
 	}
 	
-	public void calcularCostoOriginal() {
-		atracciones.forEach((att) -> {
-			this.costoOriginal += att.getCosto();
-		});
+	@Override
+	public boolean hayAtraccionAceptada(Atraccion otraAtraccion) {
+		boolean atraccionAceptada=false;
+		
+		for(Atraccion myAtraccion : this.atracciones) {
+			if(myAtraccion.equals(otraAtraccion)) {
+				atraccionAceptada=true;
+				break;
+			}
+		}
+		return atraccionAceptada;
 	}
 	
-	public int getCostoOriginal() {
-		return this.costoOriginal;
+	@Override
+	public String toString() {
+		String cadena = "\n>>>> PROMOCION "+this.nombre + " <<<<\n"+
+				"\n- atracciones:\n";
+		for(Atraccion atraccion : atracciones) {
+			cadena+= String.format("   Atraccion %-12s\tCupo: %d%n", atraccion.nombre, atraccion.cupo);
+		}
+				cadena+="\n- Tiempo total: "+this.tiempo+" hs"+
+						"\n- Tipo de Atracciones: "+this.tipoAtraccion+
+						"\n- Costo Original:\t$" + costo;
+					
+				return cadena;
 	}
-	
-	public abstract void calcularCosto();
 	
 }

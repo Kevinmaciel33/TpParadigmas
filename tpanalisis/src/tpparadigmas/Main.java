@@ -37,9 +37,9 @@ public class Main {
 //		listaOriginal.add(new Atraccion("At2", 300, 2, TipoAtraccion.Degustacion, 9));
 //		listaOriginal.add(new Atraccion("At3", 300, 4, TipoAtraccion.Aventura, 9));
 		
-		System.out.println(listaOriginal);
+		//System.out.println(listaOriginal);
 		Collections.sort(listaOriginal);
-		System.out.println(listaOriginal);
+		//System.out.println(listaOriginal);
 		
 		//Listas para mostrar al usuario en base a sus preferencias
 		LinkedList<Producto> ofrecerAUsuariosAventura = new LinkedList<Producto>();
@@ -70,6 +70,9 @@ public class Main {
 
 			compras.add(compra);
 		}
+		
+		Archivo archivoCompras= new Archivo("Compras.txt");
+		archivoCompras.guardarArchivoCompras(compras);
 	}
 
 }

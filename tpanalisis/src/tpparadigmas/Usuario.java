@@ -18,8 +18,10 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [nombre=" + nombre + ", presupuesto=" + presupuesto + ", tiempoDisponible=" + tiempoDisponible
-				+ ", preferencia=" + preferencia + "]";
+		return "Nombre: "+this.nombre+
+				"\nPresupuesto final: "+this.presupuesto+
+				"\nTiempo resultante: "+this.tiempoDisponible+" hs\n";
+				
 	}
 
 	public int getPresupuesto() {

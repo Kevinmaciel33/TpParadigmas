@@ -5,9 +5,10 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class SistemaSugerencia {
-	
-	public LinkedList<Producto> buscarListaSugerenciasSegunTipo(TipoAtraccion tipo, LinkedList<Producto> sugerenciasPaisaje,
-			LinkedList<Producto> sugerenciasDegustacion, LinkedList<Producto> sugerenciasAventura) {
+
+	public LinkedList<Producto> buscarListaSugerenciasSegunTipo(TipoAtraccion tipo,
+			LinkedList<Producto> sugerenciasPaisaje, LinkedList<Producto> sugerenciasDegustacion,
+			LinkedList<Producto> sugerenciasAventura) {
 		// primera version:
 		switch (tipo) {
 		case Paisaje:
@@ -18,7 +19,7 @@ public class SistemaSugerencia {
 			return sugerenciasAventura;
 		}
 	}
-	
+
 	public ArrayList<Atraccion> sugerirAlUsuario(Usuario usuario, Compra compra, LinkedList<Producto> sugerencias) {
 		System.out.println("Nombre del visitante: " + usuario.getNombre());
 
@@ -108,20 +109,20 @@ public class SistemaSugerencia {
 		else
 			atraccionesAceptadas.addAll(((Promocion) sugerencia).getAtracciones());
 	}
-	
+
 	public void generarItinerario(Usuario usuario, Compra compra, ArrayList<Atraccion> atraccionesAceptadas) {
 
 		System.out.println("\n------------------------------------------------------------------");
 		System.out.println("Itinerario de " + usuario.getNombre());
 		for (Atraccion atraccion : atraccionesAceptadas) {
-			System.out.println(
-					"-- Atraccion: " + atraccion.getNombre() + "\tHoras de atracción: " + atraccion.getTiempo() + "hs");
+			System.out.printf("-- Atraccion: %-18s\tHoras de atracción:  %.1fhs\n", atraccion.getNombre(),
+					atraccion.getTiempo());
 		}
 		System.out.println("\nHoras Necesarias: " + compra.getTiempo() + " hs\tMonto necesario: $" + compra.getCosto());
 		System.out.println("\n------------------------------------------------------------------");
 		Scanner entrada = new Scanner(System.in);
+		System.out.println("Presione enter...\n\n\n");
 		entrada.nextLine();
-		System.out.print("\033[H\033[2J");
-		System.out.flush();
 	}
+
 }

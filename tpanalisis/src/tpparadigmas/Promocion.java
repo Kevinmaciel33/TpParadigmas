@@ -67,7 +67,7 @@ public abstract class Promocion extends Producto {
 		for(Atraccion atraccion : atracciones) {
 			cadena+= String.format("   Atraccion %-12s\tCupo: %d%n", atraccion.nombre, atraccion.cupo);
 		}
-				cadena+="\n- Tiempo total: "+this.tiempo+" hs"+
+				cadena+="\n- Tiempo total:\t\t"+this.tiempo+" hs"+
 						"\n- Tipo de Atracciones: "+this.tipoAtraccion+
 						"\n- Costo Original:\t$" + costo;
 					

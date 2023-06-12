@@ -12,15 +12,19 @@ Tiempo a invertir: 72.0 hs
 -------------------------------------------------------
 
 Nombre: Gragas
-Presupuesto final: 3000
+Presupuesto final: 1400
 Tiempo resultante: 0.0 hs
 
 Compras:
-Bandle
--Costo:3700
--Tiempo:48.0
+Piltover
+-Costo:4800
+-Tiempo:24.0
 
-Total a pagar: $3700.0
+Aguas_Turbias
+-Costo:500
+-Tiempo:24.0
+
+Total a pagar: $5300.0
 Tiempo a invertir: 48.0 hs
 -------------------------------------------------------
 
@@ -38,33 +42,49 @@ Tiempo a invertir: 48.0 hs
 -------------------------------------------------------
 
 Nombre: Taric
-Presupuesto final: 1700
-Tiempo resultante: 8.0 hs
+Presupuesto final: 0
+Tiempo resultante: 35.0 hs
 
 Compras:
-Platillos_exoticos
--Costo:3500
--Tiempo:72.0
+Demacia
+-Costo:3000
+-Tiempo:15.0
 
-Total a pagar: $3500.0
-Tiempo a invertir: 72.0 hs
+Noxus
+-Costo:2200
+-Tiempo:30.0
+
+Total a pagar: $5200.0
+Tiempo a invertir: 45.0 hs
 -------------------------------------------------------
 
 Nombre: Leona
-Presupuesto final: 2450
-Tiempo resultante: 3.0 hs
+Presupuesto final: 550
+Tiempo resultante: 8.0 hs
 
 Compras:
-Sueño_inolvidable
--Costo:6000
--Tiempo:112.0
+Jonia
+-Costo:5000
+-Tiempo:23.0
 
-Total a pagar: $6000.0
-Tiempo a invertir: 112.0 hs
+Shurima
+-Costo:1500
+-Tiempo:36.0
+
+Zaun
+-Costo:900
+-Tiempo:24.0
+
+Aguas_Turbias
+-Costo:500
+-Tiempo:24.0
+
+Total a pagar: $7900.0
+Tiempo a invertir: 107.0 hs
 -------------------------------------------------------
 
 Nombre: Ezreal
-Presupuesto final: 100
+Presupuesto final: 500
 Tiempo resultante: 1.0 hs
 
 Compras:
@@ -72,11 +92,11 @@ Jonia
 -Costo:5000
 -Tiempo:23.0
 
-Zaun
--Costo:900
+Aguas_Turbias
+-Costo:500
 -Tiempo:24.0
 
-Total a pagar: $5900.0
+Total a pagar: $5500.0
 Tiempo a invertir: 47.0 hs
 -------------------------------------------------------
 
@@ -98,20 +118,16 @@ Tiempo a invertir: 47.0 hs
 -------------------------------------------------------
 
 Nombre: Braum
-Presupuesto final: 0
-Tiempo resultante: 3.0 hs
+Presupuesto final: 500
+Tiempo resultante: 27.0 hs
 
 Compras:
 Jonia
 -Costo:5000
 -Tiempo:23.0
 
-Aguas_Turbias
--Costo:500
--Tiempo:24.0
-
-Total a pagar: $5500.0
-Tiempo a invertir: 47.0 hs
+Total a pagar: $5000.0
+Tiempo a invertir: 23.0 hs
 -------------------------------------------------------
 
 Nombre: Zoe
@@ -145,15 +161,15 @@ Tiempo a invertir: 85.0 hs
 -------------------------------------------------------
 
 Nombre: Annie
-Presupuesto final: 3000
+Presupuesto final: 2600
 Tiempo resultante: 0.0 hs
 
 Compras:
-Aguas_Turbias
--Costo:500
+Zaun
+-Costo:900
 -Tiempo:24.0
 
-Total a pagar: $500.0
+Total a pagar: $900.0
 Tiempo a invertir: 24.0 hs
 -------------------------------------------------------
 

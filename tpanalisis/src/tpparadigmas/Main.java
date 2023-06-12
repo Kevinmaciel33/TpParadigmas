@@ -58,6 +58,7 @@ public class Main {
 		
 		SistemaSugerencia sistemaSugerencia = new SistemaSugerencia();
 		ArrayList<Compra> compras = new ArrayList<>();
+		System.out.println(" ****** Sugerencias Turismo ******\n\n");
 		for(Usuario usuario : listaUsuarios) {
 			Compra compra = new Compra(usuario);
 			

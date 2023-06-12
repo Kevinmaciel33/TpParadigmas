@@ -170,7 +170,7 @@ public class Archivo {
 				}
 			}
 		}
-		System.out.println("Archivo de Compras procesado");
+		System.out.println("Archivo de Compras procesado.");
 	}
 }
 	

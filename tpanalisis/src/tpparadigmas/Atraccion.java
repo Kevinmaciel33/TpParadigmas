@@ -49,11 +49,11 @@ public class Atraccion extends Producto {
 	
 	@Override
 	public String toString() {
-		return "Atraccion "+this.nombre+
-				"\n- Costo:\t\t$"+this.costo+
+		return "\nAtraccion "+this.nombre+
+				"\n\n- Costo:\t\t$"+this.costo+
 				"\n- Tiempo:\t\t"+this.tiempo+" hs"+
 				"\n- Tipo de Atraccion:\t"+this.tipoAtraccion+
-				"\n- Cupo:\t"+this.cupo;
+				"\n- Cupo:\t\t\t"+this.cupo;
 	}
 	
 }

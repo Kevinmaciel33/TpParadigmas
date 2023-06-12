@@ -78,5 +78,15 @@ public class testArchivo {
 		assertEquals(true, tieneCupo);
 	}
 	
+	//totalizador de itinerarios
+	@Test
+	public void totalizadorDeItinerarios() {
+		
+	}
+	//ofertador de atracciones/paquetes
+	@Test
+	public void ofertadorDeAtraccionesPaquetes() {
+		
+	}
 	
 }

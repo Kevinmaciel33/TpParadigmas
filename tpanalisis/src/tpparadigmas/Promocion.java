@@ -17,8 +17,8 @@ public abstract class Promocion extends Producto {
 
 	public void addAtraccion(Atraccion att) {
 		this.atracciones.add(att);
-		this.tiempo = +att.getTiempo();
-		this.costoOriginal = +att.getCosto();
+		this.tiempo +=att.getTiempo();
+		this.costoOriginal += att.getCosto();
 	}
 
 	@Override

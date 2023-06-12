@@ -104,6 +104,7 @@ public class Archivo {
 					atraccAct = Atraccion.buscarAtraccionEnLista(nombreAtrac,nombrePaquete, listaAtracciones);
 					promoActual.addAtraccion(atraccAct);
 				}
+				promoActual.calcularCosto();
 				listaProds.add(promoActual);
 			}
 

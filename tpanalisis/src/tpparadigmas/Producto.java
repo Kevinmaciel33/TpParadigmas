@@ -29,7 +29,7 @@ public abstract class Producto implements Comparable<Producto> {
 	
 	public abstract void decrementarCupo();
 	
-	public abstract boolean sinCupo();
+	public abstract boolean tieneCupo();
 	
 	@Override
 	public int compareTo(Producto otro) {

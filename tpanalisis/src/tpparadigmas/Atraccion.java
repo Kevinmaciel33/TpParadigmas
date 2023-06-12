@@ -19,7 +19,7 @@ public class Atraccion extends Producto {
 		this.cupo--;
 	}
 	
-	public boolean sinCupo() {
+	public boolean tieneCupo() {
 		return cupo == 0;
 	}
 	

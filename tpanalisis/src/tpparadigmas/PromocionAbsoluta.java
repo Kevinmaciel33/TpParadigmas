@@ -14,4 +14,6 @@ public class PromocionAbsoluta extends Promocion {
 		this.costo = this.costoReducido;
 	}
 
+
+
 }

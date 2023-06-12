@@ -81,13 +81,13 @@ public class Main {
 			double tiempoTotal = 0;
 	
 			for (Producto producto : listaPref) {
-				if (producto.sinCupo())
+				if (producto.tieneCupo())
 					continue; 
 				
 			
 			if (producto instanceof Promocion) {
 				Promocion promocion = (Promocion) producto;
-				if (!promocion.tieneCupo() || (promocion.getAtracciones().stream().anyMatch(atraccion -> atraccionesAceptadas.contains(atraccion)))) {
+				if ((promocion.getAtracciones().stream().anyMatch(atraccion -> atraccionesAceptadas.contains(atraccion)))) {
 					continue;
 				}
 			} else {

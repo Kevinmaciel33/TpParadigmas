@@ -80,7 +80,7 @@ public class Main {
 		int gastoTotal = 0;
 		double tiempoTotal = 0;
 
-		for (Producto producto : listaSeleccionada) {
+		for (Producto producto : listaPref) {
 			if (producto.sinCupo())
 				continue; 
 			}

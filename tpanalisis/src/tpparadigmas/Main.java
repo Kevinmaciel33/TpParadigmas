@@ -81,7 +81,7 @@ public class Main {
 			double tiempoTotal = 0;
 	
 			for (Producto producto : listaPref) {
-				if (producto.tieneCupo())
+				if (!producto.tieneCupo())
 					continue; 
 				
 			

@@ -10,8 +10,12 @@ public class PromocionAbsoluta extends Promocion {
 	}
 
 	@Override
-	public void calcularCosto() {
-		this.costo = this.costoReducido;
+	public int getCosto() {
+		return this.costoReducido;
 	}
-
+	
+	public String toString() {
+		return super.toString()+
+				"\n- Costo Reducido:\t$"+this.costoReducido;
+	}
 }

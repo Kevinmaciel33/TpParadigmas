@@ -73,73 +73,77 @@ public class Main {
 			default:
 				listaPref = listaOriginal;
 				break;
-		}
-
-
-		LinkedList<Producto> atraccionesAceptadas = new LinkedList<>();
-		int gastoTotal = 0;
-		double tiempoTotal = 0;
-
-		for (Producto producto : listaPref) {
-			if (producto.sinCupo())
-				continue; 
 			}
-		
-		if (producto instanceof Promocion) {
-			Promocion promocion = (Promocion) producto;
-			if (!promocion.tieneCupo() || (promocion.getAtracciones().stream().anyMatch(atraccion -> atraccionesAceptadas.contains(atraccion)))) {
-				continue;
-			}
-		} else {
-			Atraccion atraccion = (Atraccion) producto;
-			if (atraccionesAceptadas.contains(atraccion))
-				continue; 
-			}
-		
-		
-		
-		if (usuario.tienePresupuestoSuficiente(producto.getCosto()) && usuario.tieneTiempoDisponibleSuficiente(producto.getTiempo())) {
 
-			Scanner scanner = new Scanner(System.in);
-			String respuesta;
-			do{
-			System.out.println("¿Te gustaría realizar la compra de " + producto.getNombre() + "? (Y/N)");
-			respuesta = scanner.nextLine();
+	
+			LinkedList<Producto> atraccionesAceptadas = new LinkedList<>();
+			int gastoTotal = 0;
+			double tiempoTotal = 0;
+	
+			for (Producto producto : listaPref) {
+				if (producto.sinCupo())
+					continue; 
+				
 			
-			if (respuesta.equalsIgnoreCase("Y")) {
-				usuario.restarPresupuesto(atraccion.getCosto());
-				usuario.restarTiempo(atraccion.getTiempo());
-
-				if (producto instanceof Promocion)
-					atraccionesAceptadas.addAll(promocion.atracciones);
-				else atraccionesAceptadas.add(atraccion);
-
-				gastoTotal += producto.getTiempo();
-				tiempoTotal += producto.getCosto();
-
-
-				System.out.println("Compra realizada con éxito!");
+			if (producto instanceof Promocion) {
+				Promocion promocion = (Promocion) producto;
+				if (!promocion.tieneCupo() || (promocion.getAtracciones().stream().anyMatch(atraccion -> atraccionesAceptadas.contains(atraccion)))) {
+					continue;
+				}
+			} else {
+				Atraccion atraccion = (Atraccion) producto;
+				if (atraccionesAceptadas.contains(atraccion))
+					continue; 
 				}
 			
-			System.out.println("Presupuesto restante: " + usuario.getPresupuesto());
-			System.out.println("Tiempo restante: " + usuario.getTiempoDisponible());
 			
-			}while(!respuesta.equalsIgnoreCase("Y") || !respuesta.equalsIgnoreCase("N"));
+			
+			if (usuario.tienePresupuestoSuficiente(producto.getCosto()) && usuario.tieneTiempoDisponibleSuficiente(producto.getTiempo())) {
+	
+				try (Scanner scanner = new Scanner(System.in)) {
+					String respuesta;
+					do{
+					System.out.println("¿Te gustaría realizar la compra de " + producto.getNombre() + "? (Y/N)");
+					respuesta = scanner.nextLine();
+					
+					if (respuesta.equalsIgnoreCase("Y")) {
+						usuario.restarPresupuesto(producto.getCosto());
+						usuario.restarTiempoDisponible(producto.getTiempo());
 
-		}
+						if (producto instanceof Promocion) {
+							Promocion promocion = (Promocion) producto;
+							atraccionesAceptadas.addAll(promocion.atracciones);
+						}
+						else atraccionesAceptadas.add(producto);
 
-			if (dineroGastado > 0 || tiempoGastado > 0) {
-			System.out.println("----- Itinerario -----");
-			System.out.println("Atracciones compradas: ");
-			for (Atraccion atraccion : atraccionesAceptadas) {
-				System.out.println(atraccion);
+						gastoTotal += producto.getTiempo();
+						tiempoTotal += producto.getCosto();
+
+
+						System.out.println("Compra realizada con éxito!");
+						}
+					
+					System.out.println("Presupuesto restante: " + usuario.getPresupuesto());
+					System.out.println("Tiempo restante: " + usuario.getTiempoDisponible());
+					
+					}while(!respuesta.equalsIgnoreCase("Y") || !respuesta.equalsIgnoreCase("N"));
 				}
-			System.out.println("Costo total: " + dineroGastado);
-			System.out.println("Tiempo total: " + tiempoGastado);
+	
 			}
-	}
+	
+				if (gastoTotal > 0 || tiempoTotal > 0) {
+				System.out.println("----- Itinerario -----");
+				System.out.println("Atracciones compradas: ");
+				for (Producto atraccion : atraccionesAceptadas) {
+					System.out.println(atraccion);
+					}
+				System.out.println("Costo total: " + gastoTotal);
+				System.out.println("Tiempo total: " + tiempoTotal);
+				}
+		}
 	
 	
 	
 	}
+}
 }

@@ -23,7 +23,7 @@ public class Usuario {
 	}
 	
 	public TipoAtraccion getPreferencia() {
-        return tipoAtraccionPreferida;
+        return preferencia;
     }
 
 	public boolean tienePresupuestoSuficiente(int costo) {

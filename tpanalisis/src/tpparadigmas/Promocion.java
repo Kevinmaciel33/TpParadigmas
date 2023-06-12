@@ -12,10 +12,14 @@ public abstract class Promocion extends Producto {
 	{
 		super(nom, tipo);
 		this.atracciones = new LinkedList<Atraccion>();
+		this.tiempo = 0;
+		this.costoOriginal = 0;
 	}
 
 	public void addAtraccion(Atraccion att) {
 		this.atracciones.add(att);
+		this.tiempo =+ att.getTiempo();
+		this.costoOriginal =+ att.getCosto();
 	}
 	
 	@Override
@@ -42,18 +46,6 @@ public abstract class Promocion extends Producto {
 			});
 		}
 		return this.sinCupo;
-	}
-	
-	public void calcularTiempo() {
-		atracciones.forEach((att) -> {
-			this.tiempo += att.getTiempo();
-		});
-	}
-	
-	public void calcularCostoOriginal() {
-		atracciones.forEach((att) -> {
-			this.costoOriginal += att.getCosto();
-		});
 	}
 	
 	public int getCostoOriginal() {

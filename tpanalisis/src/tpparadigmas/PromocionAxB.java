@@ -9,6 +9,7 @@ public class PromocionAxB extends Promocion {
 		this.attracionGratis = att;
 		atracciones.add(att);
 		this.tiempo+=att.tiempo;
+		this.costo+=att.costo;
 	}
 
 	@Override

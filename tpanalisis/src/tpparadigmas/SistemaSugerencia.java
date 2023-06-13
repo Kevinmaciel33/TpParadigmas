@@ -46,7 +46,7 @@ public class SistemaSugerencia {
 		return atraccionesAceptadas;
 	}
 
-	private boolean sePuedeSugerir(Usuario usuario, Producto sugerencia, ArrayList<Atraccion> atraccionesAceptadas) {
+	public boolean sePuedeSugerir(Usuario usuario, Producto sugerencia, ArrayList<Atraccion> atraccionesAceptadas) {
 		boolean esAtraccionAceptada = esAtraccionAceptada(sugerencia, atraccionesAceptadas);
 
 		return esAtraccionAceptada == false && usuario.getPresupuesto() >= sugerencia.getCosto()

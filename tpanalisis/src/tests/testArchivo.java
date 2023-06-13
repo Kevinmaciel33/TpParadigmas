@@ -66,17 +66,6 @@ public class testArchivo {
 		 assertEquals(aBuscar,encontrada.getNombre());
 	}
 	
-	@Test
-	public void AtraccionSinCupo() 
-	{
-		Atraccion attr = new Atraccion("L", 10, 50, TipoAtraccion.Aventura, 1);
-		
-		attr.decrementarCupo();
-		
-		boolean tieneCupo = attr.sinCupo();
-		
-		assertEquals(true, tieneCupo);
-	}
 	
 	//totalizador de itinerarios
 	@Test

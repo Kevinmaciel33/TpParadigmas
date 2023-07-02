@@ -1,6 +1,10 @@
 package tests;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,6 +18,7 @@ import tpparadigmas.PromocionPorcentual;
 import tpparadigmas.SistemaSugerencia;
 import tpparadigmas.TipoAtraccion;
 import tpparadigmas.Usuario;
+import tpparadigmas.Producto;
 
 public class testOfertador {
 	
@@ -127,5 +132,37 @@ public class testOfertador {
 		boolean result = sugerencia.sePuedeSugerir(usuario1, atr2, aceptadas);
 		
 		Assert.assertEquals(false, result);
+	}
+	
+	@Test
+	public void testOrdenarRecomendacionesDegustacion()
+	{
+		LinkedList<Producto> listaOriginal = new LinkedList<Producto>();
+		
+		listaOriginal.add(atr1);
+		listaOriginal.add(atr2);
+		listaOriginal.add(atr3);
+		listaOriginal.add(atr4);
+		listaOriginal.add(promo2);		//Promo2 es una promocion de tipo degustacion, es la que debe figurar primero
+		
+		Collections.sort(listaOriginal);
+		
+		LinkedList<Producto> listaOrdenada = new LinkedList<Producto>();
+		
+		listaOrdenada.add(promo2);
+		listaOrdenada.add(atr3);
+		listaOrdenada.add(atr4);
+		listaOrdenada.add(atr1);
+		listaOrdenada.add(atr2);
+			
+		
+		LinkedList<Producto> ofrecerAUsuariosDegustacion = new LinkedList<Producto>();
+		
+		ofrecerAUsuariosDegustacion = Stream.concat(listaOriginal.stream().filter(elemento -> elemento.getTipoAtraccion() == TipoAtraccion.Degustacion),
+													listaOriginal.stream().filter(elemento -> elemento.getTipoAtraccion() != TipoAtraccion.Degustacion)).collect(Collectors.toCollection(LinkedList::new));
+		
+		
+		
+		Assert.assertArrayEquals(listaOrdenada.toArray(), ofrecerAUsuariosDegustacion.toArray());		
 	}
 }

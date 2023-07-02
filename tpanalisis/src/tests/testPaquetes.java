@@ -21,14 +21,7 @@ public class testPaquetes {
 		atr1 = new Atraccion("Minas tirith", 5, 2, TipoAtraccion.Paisaje, 25);
 		atr2 = new Atraccion("Abismo de Helm", 5, 2, TipoAtraccion.Paisaje, 1);
 		atr3 = new Atraccion("Bosque Negro", 3, 2, TipoAtraccion.Paisaje, 12);
-		/*
-		promo1 = new PromocionPorcentual("Pack Aventura", TipoAtraccion.Paisaje, 10);
-		promo1.addAtraccion(atr1);
-		promo1.addAtraccion(atr2);
-		promo2 = new PromocionAbsoluta("Pack Degustacion", TipoAtraccion.Paisaje, 36);
-		promo2.addAtraccion(atr1);
-		promo2.addAtraccion(atr2);
-		*/
+
 	}
 	
 	@Test

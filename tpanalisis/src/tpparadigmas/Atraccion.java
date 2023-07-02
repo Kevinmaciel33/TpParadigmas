@@ -32,7 +32,7 @@ public class Atraccion extends Producto {
 		return this.nombre == otro.getNombre();
 	}
 	
-	public static Atraccion buscarAtraccionEnLista(String nombreAtr,String nombrePaq,LinkedList<Atraccion> listaAtracciones) throws Exception
+	public static Atraccion buscarAtraccionEnLista(String nombreAtr,LinkedList<Atraccion> listaAtracciones) throws Exception
 	{
 		for(Atraccion atraccion:listaAtracciones)
 		{
@@ -54,6 +54,5 @@ public class Atraccion extends Producto {
 				"\n- Tiempo:\t\t"+this.tiempo+" hs"+
 				"\n- Tipo de Atraccion:\t"+this.tipoAtraccion+
 				"\n- Cupo:\t\t\t"+this.cupo;
-	}
-	
+	}	
 }

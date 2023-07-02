@@ -75,18 +75,18 @@ public class Archivo {
 				tipo = TipoAtraccion.asignarTipo(nombreTipoAtraccion);
 
 				switch (tipoPaquete) {
-				case 1: // Promocion de tipo ABSOLUTO
+				case Promocion.PROMO_ABSOLUTA : 
 					promoActual = new PromocionAbsoluta(nombrePaquete, tipo, scanner.nextInt());
 					break;
 
-				case 2: // Promocion de tipo PORCENTUAL
+				case Promocion.PROMO_PROCENTUAL: 
 					promoActual = new PromocionPorcentual(nombrePaquete, tipo, scanner.nextDouble());
 					break;
 
-				case 3: // Promocion de tipo AxB
+				case Promocion.PROMO_AXB: 
 					String nombreAtr = scanner.next();
 
-					atraccAct = Atraccion.buscarAtraccionEnLista(nombreAtr, nombrePaquete, listaAtracciones);
+					atraccAct = Atraccion.buscarAtraccionEnLista(nombreAtr, listaAtracciones);
 
 					promoActual = new PromocionAxB(nombrePaquete, tipo, atraccAct);
 					break;
@@ -96,7 +96,7 @@ public class Archivo {
 
 				for (int i = 0; i < cantAtracciones; i++) {
 					nombreAtrac = scanner.next();
-					atraccAct = Atraccion.buscarAtraccionEnLista(nombreAtrac, nombrePaquete, listaAtracciones);
+					atraccAct = Atraccion.buscarAtraccionEnLista(nombreAtrac, listaAtracciones);
 					promoActual.addAtraccion(atraccAct);
 				}
 				listaProds.add(promoActual);

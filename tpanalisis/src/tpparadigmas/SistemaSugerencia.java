@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class SistemaSugerencia {
 
-	public LinkedList<Producto> buscarListaSugerenciasSegunTipo(TipoAtraccion tipo,
+	public static LinkedList<Producto> buscarListaSugerenciasSegunTipo(TipoAtraccion tipo,
 			LinkedList<Producto> sugerenciasPaisaje, LinkedList<Producto> sugerenciasDegustacion,
 			LinkedList<Producto> sugerenciasAventura) {
 		// primera version:
@@ -20,7 +20,7 @@ public class SistemaSugerencia {
 		}
 	}
 
-	public ArrayList<Atraccion> sugerirAlUsuario(Usuario usuario, Compra compra, LinkedList<Producto> sugerencias) {
+	public static ArrayList<Atraccion> sugerirAlUsuario(Usuario usuario, Compra compra, LinkedList<Producto> sugerencias) {
 		System.out.println("Nombre del visitante: " + usuario.getNombre());
 
 		ArrayList<Atraccion> atraccionesAceptadas = new ArrayList<>();
@@ -46,14 +46,14 @@ public class SistemaSugerencia {
 		return atraccionesAceptadas;
 	}
 
-	public boolean sePuedeSugerir(Usuario usuario, Producto sugerencia, ArrayList<Atraccion> atraccionesAceptadas) {
+	public static boolean sePuedeSugerir(Usuario usuario, Producto sugerencia, ArrayList<Atraccion> atraccionesAceptadas) {
 		boolean esAtraccionAceptada = esAtraccionAceptada(sugerencia, atraccionesAceptadas);
 
 		return esAtraccionAceptada == false && usuario.getPresupuesto() >= sugerencia.getCosto()
 				&& usuario.getTiempo() >= sugerencia.getTiempo() && sugerencia.sinCupo() == false;
 	}
 
-	private boolean esAtraccionAceptada(Producto sugerencia, ArrayList<Atraccion> atraccionesAceptadas) {
+	private static boolean esAtraccionAceptada(Producto sugerencia, ArrayList<Atraccion> atraccionesAceptadas) {
 
 		boolean atraccionAceptada = false;
 		for (Atraccion atraccion : atraccionesAceptadas) {
@@ -66,20 +66,20 @@ public class SistemaSugerencia {
 		return atraccionAceptada;
 	}
 
-	private void mostrarDatosActulizadosUsuario(Usuario usuario) {
+	private static void mostrarDatosActulizadosUsuario(Usuario usuario) {
 		System.out.println("\n\n-----------------------------------------------------------------------");
 		System.out.println("Presupuesto actual de " + usuario.getNombre() + ": $" + usuario.getPresupuesto());
 		System.out.println("Tiempo disponible de " + usuario.getNombre() + ": " + usuario.getTiempo() + " hs");
 		// System.out.println("*************************************************************");
 	}
 
-	private void mostrarSugerencia(Producto sugerencia) {
+	private static void mostrarSugerencia(Producto sugerencia) {
 		System.out.println("*************************************************************");
 		System.out.println(sugerencia.toString());
 		System.out.println("\nAcepta la sugerecia? Ingrese S o N");
 	}
 
-	private boolean obtenerRespuesta() {
+	private static boolean obtenerRespuesta() {
 		char opc;
 
 		do {
@@ -91,7 +91,7 @@ public class SistemaSugerencia {
 		return opc == 's' || opc == 'S';
 	}
 
-	private void procesarCompra(Compra compra, Producto sugerencia, ArrayList<Atraccion> atraccionesAceptadas) {
+	private static void procesarCompra(Compra compra, Producto sugerencia, ArrayList<Atraccion> atraccionesAceptadas) {
 		guardarAtraccionesAceptadas(sugerencia, atraccionesAceptadas);
 		compra.getUsuario().restarTiempo(sugerencia.getTiempo());
 		compra.getUsuario().restarPresupuesto(sugerencia.getCosto());
@@ -103,14 +103,14 @@ public class SistemaSugerencia {
 		sugerencia.decrementarCupo();
 	}
 
-	private void guardarAtraccionesAceptadas(Producto sugerencia, ArrayList<Atraccion> atraccionesAceptadas) {
+	private static void guardarAtraccionesAceptadas(Producto sugerencia, ArrayList<Atraccion> atraccionesAceptadas) {
 		if (sugerencia.getClass() == Atraccion.class)
 			atraccionesAceptadas.add((Atraccion) sugerencia);
 		else
 			atraccionesAceptadas.addAll(((Promocion) sugerencia).getAtracciones());
 	}
 
-	public void generarItinerario(Usuario usuario, Compra compra, ArrayList<Atraccion> atraccionesAceptadas) {
+	public static void generarItinerario(Usuario usuario, Compra compra, ArrayList<Atraccion> atraccionesAceptadas) {
 
 		System.out.println("\n------------------------------------------------------------------");
 		System.out.println("Itinerario de " + usuario.getNombre());

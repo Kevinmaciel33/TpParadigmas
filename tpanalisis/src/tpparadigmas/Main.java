@@ -32,42 +32,35 @@ public class Main {
 		listaOriginal.addAll(listaAtracc);
 		listaOriginal.addAll(listaPromociones);		
 		
-		//Lote de prueba generico
-//		listaOriginal.add(new Atraccion("At1", 100, 5, TipoAtraccion.Paisaje, 9));
-//		listaOriginal.add(new Atraccion("At2", 300, 2, TipoAtraccion.Degustacion, 9));
-//		listaOriginal.add(new Atraccion("At3", 300, 4, TipoAtraccion.Aventura, 9));
-		
-		//System.out.println(listaOriginal);
+
 		Collections.sort(listaOriginal);
-		//System.out.println(listaOriginal);
 		
 		//Listas para mostrar al usuario en base a sus preferencias
-		LinkedList<Producto> ofrecerAUsuariosAventura = new LinkedList<Producto>();
-		LinkedList<Producto> ofrecerAUsuariosPaisaje = new LinkedList<Producto>();
-		LinkedList<Producto> ofrecerAUsuariosDegustacion = new LinkedList<Producto>();
+		LinkedList<Producto> ofrecerAUsuariosAventura 		= new LinkedList<Producto>();
+		LinkedList<Producto> ofrecerAUsuariosPaisaje 		= new LinkedList<Producto>();
+		LinkedList<Producto> ofrecerAUsuariosDegustacion 	= new LinkedList<Producto>();
 		
-		ofrecerAUsuariosAventura 	= Stream.concat(listaOriginal.stream().filter(elemento -> elemento.tipoAtraccion == TipoAtraccion.Aventura), 
-													listaOriginal.stream().filter(elemento -> elemento.tipoAtraccion != TipoAtraccion.Aventura)).collect(Collectors.toCollection(LinkedList::new));
+		ofrecerAUsuariosAventura 	= Stream.concat(listaOriginal.stream().filter(elemento -> elemento.getTipoAtraccion() == TipoAtraccion.Aventura), 
+													listaOriginal.stream().filter(elemento -> elemento.getTipoAtraccion() != TipoAtraccion.Aventura)).collect(Collectors.toCollection(LinkedList::new));
 		
-		ofrecerAUsuariosPaisaje 	= Stream.concat(listaOriginal.stream().filter(elemento -> elemento.tipoAtraccion == TipoAtraccion.Paisaje),
-													listaOriginal.stream().filter(elemento -> elemento.tipoAtraccion != TipoAtraccion.Paisaje)).collect(Collectors.toCollection(LinkedList::new));
+		ofrecerAUsuariosPaisaje 	= Stream.concat(listaOriginal.stream().filter(elemento -> elemento.getTipoAtraccion() == TipoAtraccion.Paisaje),
+													listaOriginal.stream().filter(elemento -> elemento.getTipoAtraccion() != TipoAtraccion.Paisaje)).collect(Collectors.toCollection(LinkedList::new));
 		
-		ofrecerAUsuariosDegustacion = Stream.concat(listaOriginal.stream().filter(elemento -> elemento.tipoAtraccion == TipoAtraccion.Degustacion),
-													listaOriginal.stream().filter(elemento -> elemento.tipoAtraccion != TipoAtraccion.Degustacion)).collect(Collectors.toCollection(LinkedList::new));
+		ofrecerAUsuariosDegustacion = Stream.concat(listaOriginal.stream().filter(elemento -> elemento.getTipoAtraccion() == TipoAtraccion.Degustacion),
+													listaOriginal.stream().filter(elemento -> elemento.getTipoAtraccion() != TipoAtraccion.Degustacion)).collect(Collectors.toCollection(LinkedList::new));
 		
 		
-		SistemaSugerencia sistemaSugerencia = new SistemaSugerencia();
 		ArrayList<Compra> compras = new ArrayList<>();
 		System.out.println(" ****** Sugerencias Turismo ******\n\n");
 		for(Usuario usuario : listaUsuarios) {
 			Compra compra = new Compra(usuario);
 			
-			LinkedList<Producto> sugerencias = sistemaSugerencia.buscarListaSugerenciasSegunTipo(usuario.getAtraccionPreferida(),
+			LinkedList<Producto> sugerencias = SistemaSugerencia.buscarListaSugerenciasSegunTipo(usuario.getAtraccionPreferida(),
 																								ofrecerAUsuariosPaisaje, ofrecerAUsuariosDegustacion, ofrecerAUsuariosAventura);
 			
-			ArrayList<Atraccion> atraccionesAceptadas = sistemaSugerencia.sugerirAlUsuario(usuario, compra, sugerencias);
+			ArrayList<Atraccion> atraccionesAceptadas = SistemaSugerencia.sugerirAlUsuario(usuario, compra, sugerencias);
 
-			sistemaSugerencia.generarItinerario(usuario, compra, atraccionesAceptadas);
+			SistemaSugerencia.generarItinerario(usuario, compra, atraccionesAceptadas);
 
 			compras.add(compra);
 		}

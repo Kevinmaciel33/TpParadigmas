@@ -21,7 +21,6 @@ public class testTotalizadorItinerario {
 		int presupuestoInicial = 11000;
 		double tiempoInicial = 67.8;
 		
-        SistemaSugerencia sistemaSugerencia = new SistemaSugerencia();
         Usuario usuario=new Usuario("Lucius", presupuestoInicial, tiempoInicial, TipoAtraccion.Aventura);
         Compra compra = new Compra(usuario);
         ArrayList<Atraccion> atraccionesAceptadas = new ArrayList<Atraccion>();
@@ -38,8 +37,8 @@ public class testTotalizadorItinerario {
         sugerencias.add(attr4);
 
 
-        atraccionesAceptadas = sistemaSugerencia.sugerirAlUsuario(usuario, compra, sugerencias);
-        sistemaSugerencia.generarItinerario(usuario, compra, atraccionesAceptadas);
+        atraccionesAceptadas = SistemaSugerencia.sugerirAlUsuario(usuario, compra, sugerencias);
+        SistemaSugerencia.generarItinerario(usuario, compra, atraccionesAceptadas);
         
         Assert.assertTrue(presupuestoInicial >= compra.getCosto());
         Assert.assertTrue(tiempoInicial >= compra.getTiempo());

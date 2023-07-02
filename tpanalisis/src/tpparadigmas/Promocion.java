@@ -4,6 +4,10 @@ import java.util.LinkedList;
 
 public abstract class Promocion extends Producto {
 
+	public static final int PROMO_ABSOLUTA = 1;
+	public static final int PROMO_PROCENTUAL = 2;
+	public static final int PROMO_AXB = 3;
+	
 	protected LinkedList<Atraccion> atracciones;
 	protected boolean noHayCupo = false;
 	
@@ -35,7 +39,8 @@ public abstract class Promocion extends Producto {
 	public boolean sinCupo() {
 		if(!this.noHayCupo) {
 			atracciones.forEach((att) -> {
-				if(att.sinCupo()) this.noHayCupo = true;
+				if(att.sinCupo())
+					this.noHayCupo = true;
 			});
 		}
 		return this.noHayCupo;

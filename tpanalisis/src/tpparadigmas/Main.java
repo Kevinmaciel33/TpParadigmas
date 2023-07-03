@@ -13,26 +13,17 @@ public class Main {
 		Archivo archAtracciones = new Archivo("Atracciones.txt");		
 		LinkedList<Atraccion> listaAtracc = archAtracciones.leerArchivoAtracciones();
 		
-		
 		Archivo archPromociones = new Archivo("Paquetes.txt");		
 		LinkedList<Promocion> listaPromociones = archPromociones.leerArchivoPromociones(listaAtracc);
 		
 		Archivo archUsuarios = new Archivo("Cliente.txt");		
 		LinkedList<Usuario> listaUsuarios = archUsuarios.leerArchivoUsuarios();
 		
-		
-		//Lista con atracciones/promociones que viene de archivo, sin ordenar
-		
-		
 		LinkedList<Producto> listaOriginal = new LinkedList<Producto>();
-		
-		
-		//En la lista original mezclo las lists de atracciones y promociones
 		
 		listaOriginal.addAll(listaAtracc);
 		listaOriginal.addAll(listaPromociones);		
 		
-
 		Collections.sort(listaOriginal);
 		
 		//Listas para mostrar al usuario en base a sus preferencias
@@ -40,14 +31,17 @@ public class Main {
 		LinkedList<Producto> ofrecerAUsuariosPaisaje 		= new LinkedList<Producto>();
 		LinkedList<Producto> ofrecerAUsuariosDegustacion 	= new LinkedList<Producto>();
 		
-		ofrecerAUsuariosAventura 	= Stream.concat(listaOriginal.stream().filter(elemento -> elemento.getTipoAtraccion() == TipoAtraccion.Aventura), 
-													listaOriginal.stream().filter(elemento -> elemento.getTipoAtraccion() != TipoAtraccion.Aventura)).collect(Collectors.toCollection(LinkedList::new));
+		ofrecerAUsuariosAventura = Stream.concat(listaOriginal.stream().filter(elemento -> elemento.getTipoAtraccion() == TipoAtraccion.Aventura), 
+					listaOriginal.stream().filter(elemento -> elemento.getTipoAtraccion() != TipoAtraccion.Aventura))
+					.collect(Collectors.toCollection(LinkedList::new));
 		
-		ofrecerAUsuariosPaisaje 	= Stream.concat(listaOriginal.stream().filter(elemento -> elemento.getTipoAtraccion() == TipoAtraccion.Paisaje),
-													listaOriginal.stream().filter(elemento -> elemento.getTipoAtraccion() != TipoAtraccion.Paisaje)).collect(Collectors.toCollection(LinkedList::new));
+		ofrecerAUsuariosPaisaje = Stream.concat(listaOriginal.stream().filter(elemento -> elemento.getTipoAtraccion() == TipoAtraccion.Paisaje),
+					listaOriginal.stream().filter(elemento -> elemento.getTipoAtraccion() != TipoAtraccion.Paisaje))
+					.collect(Collectors.toCollection(LinkedList::new));
 		
 		ofrecerAUsuariosDegustacion = Stream.concat(listaOriginal.stream().filter(elemento -> elemento.getTipoAtraccion() == TipoAtraccion.Degustacion),
-													listaOriginal.stream().filter(elemento -> elemento.getTipoAtraccion() != TipoAtraccion.Degustacion)).collect(Collectors.toCollection(LinkedList::new));
+					listaOriginal.stream().filter(elemento -> elemento.getTipoAtraccion() != TipoAtraccion.Degustacion))
+					.collect(Collectors.toCollection(LinkedList::new));
 		
 		
 		ArrayList<Compra> compras = new ArrayList<>();
@@ -56,17 +50,14 @@ public class Main {
 			Compra compra = new Compra(usuario);
 			
 			LinkedList<Producto> sugerencias = SistemaSugerencia.buscarListaSugerenciasSegunTipo(usuario.getAtraccionPreferida(),
-																								ofrecerAUsuariosPaisaje, ofrecerAUsuariosDegustacion, ofrecerAUsuariosAventura);
+							ofrecerAUsuariosPaisaje, ofrecerAUsuariosDegustacion, ofrecerAUsuariosAventura);
 			
 			ArrayList<Atraccion> atraccionesAceptadas = SistemaSugerencia.sugerirAlUsuario(usuario, compra, sugerencias);
-
 			SistemaSugerencia.generarItinerario(usuario, compra, atraccionesAceptadas);
-
 			compras.add(compra);
 		}
 		
 		Archivo archivoCompras= new Archivo("Compras.txt");
 		archivoCompras.guardarArchivoCompras(compras);
 	}
-
 }

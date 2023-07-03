@@ -33,23 +33,44 @@ public abstract class Producto implements Comparable<Producto> {
 	
 	@Override
 	public int compareTo(Producto otro) {
-		if(this.getClass().getSuperclass().equals(otro.getClass().getSuperclass())) {
-			if(otro.getCosto() < this.costo) {
-				return -1;
-			} else if(otro.getCosto() > this.costo) {
-				return 1;
+		
+		boolean estoEsPromocion = this instanceof Promocion;
+		boolean otroEsPromocion = otro instanceof Promocion;
+		
+		if(estoEsPromocion ==  otroEsPromocion) {
+			int costoComparison = Double.compare(otro.costo,this.costo);
+	        if (costoComparison != 0) {
+	            return costoComparison;
 			} else {
-				if(otro.getTiempo() < this.tiempo) {
-					return -1;
-				} else if(otro.getTiempo() > this.tiempo) {
-					return 1;
-				} else return 0;
+	            return Double.compare(otro.tiempo,this.tiempo);
 			}
-		} else if(this.getClass().getSuperclass().getSimpleName().equals("Promocion")) {
+		} else if(estoEsPromocion) {
 			return -1;
 		} else return 1;
-		
 	}
+	
+//	@Override
+//	public int compareTo(Producto otro) {
+//		if(this.getClass().getSuperclass().equals(otro.getClass().getSuperclass())) {
+//			if(otro.getCosto() < this.costo) {
+//				return -1;
+//			} else if(otro.getCosto() > this.costo) {
+//				return 1;
+//			} else {
+//				if(otro.getTiempo() < this.tiempo) {
+//					return -1;
+//				} else if(otro.getTiempo() > this.tiempo) {
+//					return 1;
+//				} else return 0;
+//			}
+//		} else if(this.getClass().getSuperclass().getSimpleName().equals("Promocion")) {
+//			return -1;
+//		} else return 1;
+//		
+//	}
+
+	
+
 
 	@Override
 	public String toString() {

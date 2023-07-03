@@ -9,7 +9,7 @@ public class SistemaSugerencia {
 	public static LinkedList<Producto> buscarListaSugerenciasSegunTipo(TipoAtraccion tipo,
 			LinkedList<Producto> sugerenciasPaisaje, LinkedList<Producto> sugerenciasDegustacion,
 			LinkedList<Producto> sugerenciasAventura) {
-		// primera version:
+		
 		switch (tipo) {
 		case Paisaje:
 			return sugerenciasPaisaje;
@@ -70,7 +70,7 @@ public class SistemaSugerencia {
 		System.out.println("\n\n-----------------------------------------------------------------------");
 		System.out.println("Presupuesto actual de " + usuario.getNombre() + ": $" + usuario.getPresupuesto());
 		System.out.println("Tiempo disponible de " + usuario.getNombre() + ": " + usuario.getTiempo() + " hs");
-		// System.out.println("*************************************************************");
+		
 	}
 
 	private static void mostrarSugerencia(Producto sugerencia) {
